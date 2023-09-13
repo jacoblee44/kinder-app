@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Reset Password</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+<!-- Page Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card mt-3" align="left" style="max-width:500px;margin:0 auto;">
+                <div class="card-header">
+                    Reset Your Password
+                </div>
+                <div class="card-body">
+                    <% if (typeof  errmsg != "undefined"){%>
+                    <h5 style="color:darkred"><%-errmsg%></h5>
+                    <% } else {%>
+                        <form action="/api/auth/password/reset" method="post" onsubmit="return beforesubmit()">
+                            <div class="form-group">
+                                <input type="hidden" name="resetCode" id="resetCode" value="<%=resetCode%>" />
+                                <input type="password" class="form-control" name="newpwd" id="newpwd" placeholder="New Password" required/>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" name="confirmpwd" id="confirmpwd" placeholder="Confirm Password" required/>
+                            </div>
+                            <div class="form-group" align="center">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    <%}%>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript -->
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script>
+    function beforesubmit(){
+        if($("#newpwd").val()!=$("#confirmpwd").val()) {
+            alert("Confirm password is not matched!");
+            return false;
+        }
+        return true;
+    }
+</script>
+</body>
+
+</html>

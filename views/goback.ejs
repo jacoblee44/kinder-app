@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Vip-Chats</title>
+</head>
+    <%=message%>
+<script type="text/javascript">
+let url = "";
+<% if(typeof url != 'undefined') { %>
+url = "<%=url%>";
+<% }%>
+let step = 1;
+<% if(typeof step != 'undefined') { %>
+step = "<%=step%>";
+<% }%>
+alert("<%=message%>");
+<% if(typeof reloadopener!='undefined'&& reloadopener ) { %>
+if( window.opener)
+    window.opener.location.reload();
+<% } %>
+if(url==""){
+    window.history.go(-step);
+}else{
+    location.href = url;
+}
+
+</script>
+</html>
